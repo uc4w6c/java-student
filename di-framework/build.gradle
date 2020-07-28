@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'di-framework'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "javax.inject:javax.inject:1"
+    implementation "org.javassist:javassist:3.27.0-GA"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
