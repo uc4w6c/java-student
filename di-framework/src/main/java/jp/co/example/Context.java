@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -95,18 +96,20 @@ public class Context {
         return scope.computeIfAbsent(name, key -> {
             try {
                 return createObject(type);
-            } catch (InstantiationException | IllegalAccessException ex) {
+            } catch (InstantiationException | IllegalAccessException |
+                    NoSuchMethodException | InvocationTargetException ex)
+            {
                 throw new RuntimeException(name + " can not instanciate", ex);
             }
         });
     }
 
-    private static <T> T createObject(Class<T> type) throws InstantiationException, IllegalAccessException {
+    private static <T> T createObject(Class<T> type) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         T object;
         if (Stream.of(type.getDeclaredMethods()).anyMatch(m -> m.isAnnotationPresent(InvokeLog.class))) {
-            object = wrap(type).newInstance();
+            object = wrap(type).getDeclaredConstructor().newInstance();
         } else {
-            object = type.newInstance();
+            object = type.getDeclaredConstructor().newInstance();
         }
         inject(type, object);
         return object;
@@ -183,8 +186,10 @@ public class Context {
                     cls.addMethod(override);
                 }
             }
-            return (T) cls.toClass().newInstance();
-        } catch (NotFoundException |IllegalAccessException | CannotCompileException | InstantiationException ex) {
+            return (T) cls.toClass().getDeclaredConstructor().newInstance();
+        } catch (NotFoundException | IllegalAccessException | CannotCompileException |
+                InstantiationException | NoSuchMethodException | InvocationTargetException ex)
+        {
             throw new RuntimeException(ex);
         }
     }
