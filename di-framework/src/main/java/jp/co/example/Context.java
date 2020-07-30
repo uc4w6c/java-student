@@ -93,6 +93,9 @@ public class Context {
         } else {
             scope = beans;
         }
+        // Java8まではOKだったけどJava9でだめになったみたい
+        // 参考: https://stackoverflow.com/questions/54824656/since-java-9-hashmap-computeifabsent-throws-concurrentmodificationexception-on
+        /*
         return scope.computeIfAbsent(name, key -> {
             try {
                 return createObject(type);
@@ -102,6 +105,19 @@ public class Context {
                 throw new RuntimeException(name + " can not instanciate", ex);
             }
         });
+         */
+        if (scope.containsKey(name)) {
+            return scope.get(name);
+        }
+        try {
+            Object object = createObject(type);
+            scope.put(name, object);
+            return object;
+        } catch (InstantiationException | IllegalAccessException |
+                    NoSuchMethodException | InvocationTargetException ex)
+        {
+                throw new RuntimeException(name + " can not instanciate", ex);
+        }
     }
 
     private static <T> T createObject(Class<T> type) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
