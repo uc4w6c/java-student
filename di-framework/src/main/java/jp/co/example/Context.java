@@ -60,6 +60,7 @@ public class Context {
                         })
                         .filter(c -> c.isAnnotationPresent(Named.class))
                         .forEach(c -> {
+                            System.out.println(c.toString());
                             String simpleName = c.getSimpleName();
                             register(simpleName.substring(0, 1).toLowerCase() + simpleName.substring(1), c);
                         });
@@ -80,6 +81,7 @@ public class Context {
     }
 
     public static Object getBean(String name) {
+        System.out.println(types);
         Class type = types.get(name);
         Objects.requireNonNull(type, name + " not found.");
 

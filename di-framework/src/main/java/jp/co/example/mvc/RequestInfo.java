@@ -13,6 +13,7 @@ public class RequestInfo {
     private String userAgent;
     private String sessionId;
 
+    public RequestInfo() {}
     public RequestInfo(String path, InetAddress localAddress, String userAgent, String sessionId) {
         this.path = path;
         this.localAddress = localAddress;
@@ -20,18 +21,30 @@ public class RequestInfo {
         this.sessionId = sessionId;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+    }
     public String getPath() {
         return path;
     }
 
+    public void setLocalAddress(InetAddress localAddress) {
+        this.localAddress = localAddress;
+    }
     public InetAddress getLocalAddress() {
         return localAddress;
     }
 
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
     public String getUserAgent() {
         return userAgent;
     }
 
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
     public String getSessionId() {
         return sessionId;
     }

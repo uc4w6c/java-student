@@ -6,9 +6,10 @@ import jp.co.example.annotations.Path;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+/*
 @Named
 @Path("info")
-public class RequestInfoController {
+public class RequestInfoControllerBK {
     @Inject
     RequestInfo requestInfo;
 
@@ -26,3 +27,4 @@ public class RequestInfoController {
 
     }
 }
+ */
