@@ -31,15 +31,15 @@ import javassist.NotFoundException;
 import jp.co.example.annotations.InvokeLog;
 import jp.co.example.annotations.RequestScoped;
 
-/**
- * @author naoki
- */
 public class Context {
 
     static Map<String, Class> types = new HashMap<>();
     static Map<String, Object> beans = new HashMap<>();
     static ThreadLocal<Map<String, Object>> requestBeans = new InheritableThreadLocal<>();
 
+    /**
+     * DIコンポーネントの登録
+     */
     public static void autoRegister() {
         try {
             URL res = Context.class.getResource(
@@ -76,10 +76,20 @@ public class Context {
         return types.entrySet();
     }
 
+    /**
+     * DI対象クラスをMapに追加
+     * @param name
+     * @param type
+     */
     public static void register(String name, Class type) {
         types.put(name, type);
     }
 
+    /**
+     * 指定したクラスをインスタンス化して取得
+     * @param name
+     * @return
+     */
     public static Object getBean(String name) {
         System.out.println(types);
         Class type = types.get(name);
