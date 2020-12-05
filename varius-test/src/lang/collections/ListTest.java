@@ -9,9 +9,10 @@ import java.util.Random;
 
 public class ListTest {
     public static void main(String[] args) {
-        List<Integer> arrayList = new LinkedList<>();
-        addLast(arrayList);
-        addRandom(arrayList);
+        List<Integer> list = new ArrayList<>();
+        // List<Integer> list = new LinkedList<>();
+        addLast(list);
+        addRandom(list);
     }
 
     public static List<Integer> addLast(List<Integer> list) {

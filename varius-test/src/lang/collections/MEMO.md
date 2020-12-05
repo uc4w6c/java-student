@@ -16,6 +16,12 @@ Array
         複数の配列を同時にセットする場合は、1.5倍と比較して大きい方を採用
         単純に末尾にaddするならArrayListの方が速い
 
+     - get(indexOf, contains)
+     
+     -set
+
+     - remove
+
    - LinkedList
  - Set
    - HashSet
