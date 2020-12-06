@@ -36,6 +36,8 @@ immutable List も
 
 ## Map
  - HashMap
+    順序を持たない。hash値で管理する(他のmapも同じだが)
  - LinkedHashMap
+    前後の参照を持つ。
  - TreeMap
-
+    ハッシュ値を利用した順序を持つ
