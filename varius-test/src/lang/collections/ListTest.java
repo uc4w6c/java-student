@@ -12,6 +12,7 @@ public class ListTest {
         List<Integer> list = new ArrayList<>();
         // List<Integer> list = new LinkedList<>();
         addLast(list);
+        list.clear();
         addRandom(list);
     }
 
@@ -32,17 +33,24 @@ public class ListTest {
         int j = 1;
         list.add(j++);
         list.add(j++);
-        for (int i = 2; i < 1_000; i++) {
+        for (int i = 2; i < 100_000; i++) {
             // list.add(random.nextInt(i + 1), j++);
-            list.add(1, j++);
+            // list.add(1, j++);
+            list.add(i / 2, j++);
         }
         LocalDateTime endTime = LocalDateTime.now();
         System.out.println(list.getClass() + ": addRandom :" + ChronoUnit.MILLIS.between(startTime,endTime));
         return list;
     }
 }
-// class java.util.ArrayList: addLast :561
-// class java.util.ArrayList: addRandom :14714
+// 2番目の要素に追加の場合
+// class java.util.ArrayList: addLast :624
+// class java.util.ArrayList: addRandom :937
+// class java.util.LinkedList: addLast :2080
+// class java.util.LinkedList: addRandom :10
 
-// class java.util.LinkedList: addLast :2058
-// class java.util.LinkedList: addRandom :0
+// 中央の要素に追加の場合
+// class java.util.ArrayList: addLast :562
+// class java.util.ArrayList: addRandom :421
+// class java.util.LinkedList: addLast :2084
+// class java.util.LinkedList: addRandom :7596
