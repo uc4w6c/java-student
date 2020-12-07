@@ -11,5 +11,16 @@ public class SetTest {
         Set<String> treeSet = new TreeSet<>();
         Set<String> linkedHashSet = new LinkedHashSet<>();
         String test = "Java";
+
+        hashSet.add("test1");
+        hashSet.add("test2");
+        if (hashSet.contains("test2")) {
+            System.out.println("yes");
+        }
+        String[] list = new String[16];
+        list[0] = "test1";
+        list[2] = "test2";
+        System.out.println(15 & 33); // 多分 modしている
+        System.out.println(list[15 & 0]);
     }
 }
