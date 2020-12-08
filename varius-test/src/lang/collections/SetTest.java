@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class SetTest {
     public static void main(String... args) {
         Set<String> hashSet = new HashSet<>();
-        Set<String> treeSet = new TreeSet<>();
+        Set<Integer> treeSet = new TreeSet<>();
         Set<String> linkedHashSet = new LinkedHashSet<>();
         String test = "Java";
 
@@ -22,5 +22,9 @@ public class SetTest {
         list[2] = "test2";
         System.out.println(15 & 33); // 多分 modしている
         System.out.println(list[15 & 0]);
+
+        treeSet.add(3);
+        treeSet.add(2);
+        treeSet.add(1);
     }
 }
