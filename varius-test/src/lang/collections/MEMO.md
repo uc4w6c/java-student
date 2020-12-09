@@ -29,6 +29,8 @@ Array
    - LinkedHashSet
  - Queue
    - PriorityQueue
+     二分ヒープ: https://medium.com/@yasufumy/data-structure-heap-ecfd0989e5be
+
    - Deque
      - ArrayDeque
 
