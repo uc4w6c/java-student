@@ -8,8 +8,6 @@ import java.util.TreeMap;
 public class MapTest {
     public static void main(String... args) {
         // Map<String, String> hashMap = new HashMap<>();
-        Map<String, String> linkedHashMap = new LinkedHashMap<>();
-        Map<String, String> treeMap = new TreeMap<>();
 
         // HashTableの衝突テスト
 
@@ -21,6 +19,18 @@ public class MapTest {
             System.out.println(value);
         });
 
+        Map<Integer, String> treeMap = new TreeMap<>();
+        treeMap.put(25, "Taro");
+        treeMap.put(20, "Hanako");
+        treeMap.put(30, "Yamao");
+        // treeMap.put(31, "Yamao");
+        treeMap.entrySet().forEach(entry -> System.out.println(entry.getKey() + ":" + entry.getValue()));
+
+        Map<Integer, String> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put(25, "Taro");
+        linkedHashMap.put(20, "Hanako");
+        linkedHashMap.put(30, "Yamao");
+        linkedHashMap.entrySet().forEach(entry -> System.out.println(entry.getKey() + ":" + entry.getValue()));
     }
 
     private static class Book {
